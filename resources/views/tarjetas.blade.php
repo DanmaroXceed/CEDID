@@ -23,9 +23,8 @@
                         <h5 class="card-title">{{ $d->nombre }}</h5>
                     </div>
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item">Fecha de nacimiento: {{ $d->fecha_nac }}</li>
-                        <li class="list-group-item">Direccion: {{ $d->d_calle }} {{ $d->d_num }}</li>
-                        <li class="list-group-item">Estado: {{ $d->d_muni }}, {{ $d->d_est }}</li>
+                        <li class="list-group-item">Fecha de nacimiento: <strong>{{ $d->fecha_nac }}</strong></li>
+                        <li class="list-group-item">Procedencia: <strong>{{ $d->d_muni }}, {{ $d->d_est }}</strong></li>
                     </ul>
                     <div class="card-body">
                         <a href="{{ asset('cedulas/' . $d->cedid) . '.jpg' }}" class="card-link" target="_blank">Cédula de identificación</a>
