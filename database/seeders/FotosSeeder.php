@@ -24,7 +24,7 @@ class FotosSeeder extends Seeder
         
         foreach ($archivos as $archivo) {            
             // Generar la URL
-            $url = asset('fotos/' . $archivo);
+            $url = $archivo;
             
             // Guardar en la base de datos
             Foto::create(['url' => $url]);

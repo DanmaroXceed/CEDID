@@ -24,7 +24,6 @@ class Data extends Model
         'd_calle',
         'd_num',
         'd_col',
-        'd_col',
         'd_est',
         'd_muni',
         'd_localidad',
