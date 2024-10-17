@@ -17,10 +17,12 @@
     <script src="https://cdn.datatables.net/2.0.5/js/dataTables.bootstrap5.js"></script>
     <link href="https://cdn.datatables.net/2.0.5/css/dataTables.bootstrap5.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    @livewireStyles
 </head>
 <body>
     <div class="contenido" style="background: #dfdfdf">
         @yield('contenido')
     </div>
+    @livewireScripts
 </body>
 </html>
