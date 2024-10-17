@@ -1,5 +1,11 @@
 @extends('app')
 
+@if(session('data'))
+    @php
+        $data = session('data');   
+    @endphp
+@endif
+
 @section('contenido')
     <a 
         class="btn btn-warning" 
@@ -9,11 +15,11 @@
         Regresar
     </a>
 
-    <div class='container  pt-4'>
-        <form class="d-flex mb-4" role="search" method="GET" action="{{ route('inicio') }}">
+    <div class='container pt-4' >
+        {{-- <form class="d-flex mb-4" role="search" method="GET" action="{{ route('filtrado') }}">
             <input class="form-control me-2" type="search" name="search" placeholder="Buscar" value="{{ request('search') }}" aria-label="Search">
             <button class="btn btn-outline-success" type="submit">Buscar</button>
-        </form>
+        </form> --}}
         <div class='row'>
             @foreach ($data as $d)
             <div class="col-md-3 mb-4"> <!-- Aquí definimos cuántas tarjetas caben por fila -->
