@@ -5,11 +5,11 @@
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Bienvenido</h5>
+            <h5 class="modal-title" id="exampleModalLabel">Aviso de Objetivo</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-            ¡Bienvenido a la página! Aquí puedes buscar información y visualizar las cédulas.
+            La presente publicación se hace en cumplimiento a la Ley General de Protección de Datos Personales y la Ley De Protección de Datos Personales en Posesión de los Sujetos Obligados del Estado de Zacatecas con la finalidad de privilegiar el derecho de las víctimas a ser regresados a su familia
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
