@@ -15,9 +15,12 @@ class MainController extends Controller
     {
         $query = DB::table('data')
             ->select('data.*', 'fotos.url as url')  // Para obtener también la URL de la foto
-            ->join('fotos', 'data.foto_id', '=', 'fotos.id');
+            ->join('fotos', 'data.foto_id', '=', 'fotos.id')
+            ->where('estado_ident','=','NR');
 
         $data = $query->get();
+
+        session(['data' => $data]);
         
         // dd($data);
         return view('tarjetas', compact('data'));

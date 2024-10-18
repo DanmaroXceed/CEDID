@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cedulas de Identificacion</title>
+    <link rel="shortcut icon" type="image/png" href="{{ asset('/logoweb-1.png') }}">
+    <link rel="shortcut icon" sizes="192x192" href="{{ asset('/logoweb-1.png') }}">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
@@ -19,8 +21,18 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     @livewireStyles
 </head>
-<body>
-    <div class="contenido" style="background: #dfdfdf">
+<body style="height: 100vh; background: #e9e9e9">
+    <nav class="navbar bg-body-tertiary" style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);">
+        <div class="container-fluid px-4 px-md-5">
+            <a class="navbar-brand d-flex align-items-center">
+                <img src="https://www.fiscaliazacatecas.gob.mx/wp-content/uploads/2019/03/logoweb-1.png" alt="Logo" class="me-2" style="max-height: 40px;">
+                <h1 class="h4 mb-0 px-4">Cédulas de Identificación</h1>
+            </a>
+            <a href="https://www.fiscaliazacatecas.gob.mx/" class="btn btn-outline-primary ">Página Principal FGJEZ</a>
+        </div>
+    </nav>    
+
+    <div class="contenido" style="">
         @yield('contenido')
     </div>
     @livewireScripts

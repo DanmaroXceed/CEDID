@@ -16,13 +16,11 @@ class Buscador extends Component
 
     public $sexo = '';
 
-    public $edad = '';
-
     public function buscar(){
         // $this->validate(); 
 
         // Validar que al menos un campo esté lleno
-        if (empty($this->nombre) && empty($this->estado) && empty($this->municipio) && empty($this->sexo) && empty($this->edad)) {
+        if (empty($this->nombre) && empty($this->estado) && empty($this->municipio) ) {
             // Devolver un error si no hay datos en ninguno de los campos
             session()->flash('error', 'Debes completar al menos un campo para buscar.');
             return;
@@ -52,11 +50,12 @@ class Buscador extends Component
             $query->whereRaw("SUBSTRING(data.clave_elec, 15, 1) = ?", [$this->sexo]);
         }
 
-        if (!empty($this->edad)) {
-            $query->where('data.edad', $this->edad);  // Suponiendo que la búsqueda por edad es exacta
-        }
+        $query->where('estado_ident','=','NR');
 
         $data = $query->get();
+        
+        // Guarda los datos en la sesión
+        session(['data' => $data]);
         
         // dd($data);
         return redirect()->route('filtrado')->with('data', $data);
@@ -64,7 +63,7 @@ class Buscador extends Component
 
     public function limpiar()
     {
-        $this->reset(['nombre', 'estado', 'municipio', 'sexo', 'edad']);
+        $this->reset(['nombre', 'estado', 'municipio', 'sexo']);
     }
 
     public function render()

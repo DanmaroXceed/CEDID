@@ -1,4 +1,4 @@
-<div class="p-4" style="height: 100vh">
+<div class="p-4">
     <!-- Modal -->
     <div class="modal fade" id="welcomeModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" 
         wire:ignore.self>
@@ -44,36 +44,45 @@
         });
     </script>
 
-    <form wire:submit.prevent="buscar">
-        @if(session('error'))
-            <div class="alert alert-danger">
-                {{ session('error') }}
+    <div style="
+    width: 60%;                /* Deja el 20% de espacio a cada lado */
+    background-color: #f0f0f0; /* Color de fondo del rectángulo */
+    border-radius: 15px;       /* Bordes redondeados */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra */
+    margin: 50px auto;         /* Centra el div horizontalmente */
+    padding: 20px;             /* Espaciado interior */
+    text-align: center;        /* Alineación de texto */
+    ">
+    <!-- Contenido dentro del rectángulo -->
+        <form wire:submit.prevent="buscar" class="px-4 pt-4">
+            @if(session('error'))
+                <div class="alert alert-danger">
+                    {{ session('error') }}
+                </div>
+            @endif
+            <input wire:model="nombre" class="mb-4 form-control input-login" type="text" placeholder="Nombre">
+
+            <input wire:model="estado" class="mb-4 form-control input-login" type="text" placeholder="Estado">
+
+            <input wire:model="municipio" class="mb-4 form-control input-login" type="text" placeholder="Municipio">
+
+            <div class="mb-4">
+                <label>
+                    <input wire:model="sexo" type="radio" value="H"> Masculino
+                </label>
+                <label class="ml-3">
+                    <input wire:model="sexo" type="radio" value="M"> Femenino
+                </label>
             </div>
-        @endif
-        <input wire:model="nombre" class="mb-4 form-control input-login" type="text" placeholder="Nombre">
 
-        <input wire:model="estado" class="mb-4 form-control input-login" type="text" placeholder="Estado">
+            <div class="">
+                <button type="button" wire:click="limpiar" class="btn btn-outline-danger">Limpiar</button>
+                <button class="btn btn-outline-success" type="submit">Buscar</button>
+            </div>
+        </form>
 
-        <input wire:model="municipio" class="mb-4 form-control input-login" type="text" placeholder="Municipio">
-
-        <div class="mb-4">
-            <label>
-                <input wire:model="sexo" type="radio" value="H"> Masculino
-            </label>
-            <label class="ml-3">
-                <input wire:model="sexo" type="radio" value="M"> Femenino
-            </label>
+        <div class="py-4">
+            <a class="btn btn-outline-primary" href="/listado">Visualizar todas las cedulas</a>
         </div>
-
-        <input wire:model="edad" class="mb-4 form-control input-login" type="number" placeholder="Edad">
-
-        <div class="">
-            <button type="button" wire:click="limpiar" class="btn btn-outline-warning">Limpiar</button>
-            <button class="btn btn-outline-success" type="submit">Buscar</button>
-        </div>
-    </form>
-
-    <div class="py-4">
-        <a class="btn btn-outline-primary" href="/listado">Visualizar todas las cedulas</a>
     </div>
 </div>
