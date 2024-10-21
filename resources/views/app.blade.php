@@ -26,7 +26,7 @@
         <div class="container-fluid px-4 px-md-5">
             <a class="navbar-brand d-flex align-items-center">
                 <img src="https://www.fiscaliazacatecas.gob.mx/wp-content/uploads/2019/03/logoweb-1.png" alt="Logo" class="me-2" style="max-height: 40px;">
-                <h1 class="h4 mb-0 px-4">Cédulas de Identificación</h1>
+                <h1 class="h4 mb-0 px-4">Busqueda de Cédulas de Identificación</h1>
             </a>
             <a href="https://www.fiscaliazacatecas.gob.mx/" class="btn btn-outline-primary ">Página Principal FGJEZ</a>
         </div>

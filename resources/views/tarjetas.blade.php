@@ -48,6 +48,10 @@
                     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
                     padding: 20px;
                     text-align: center;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between; /* Esto asegura que todo esté distribuido uniformemente */
+                    height: 100%; /* Asegura que todas las tarjetas tengan la misma altura */
                 ">
                     <!-- Imagen de la tarjeta -->
                     <img src="{{ asset('fotos/' . $d->url) }}" alt="Foto" style="
@@ -59,8 +63,11 @@
                     <!-- Información -->
                     <div style="padding-top: 20px;">
                         <h3 style="margin-bottom: 10px;">{{ $d->nombre }}</h3>
-                        <p style="color: #777;">Descripción o información adicional</p>
                         <p>Procedencia: <strong>{{ $d->d_muni }}, {{ $d->d_est }}</strong></p>
+                    </div>
+                    
+                    <!-- Botón de la tarjeta -->
+                    <div style="padding-top: 10px;">
                         <a href="{{ asset('cedulas/' . $d->cedid) . '.jpg' }}" class="btn btn-sm btn-outline-primary" target="_blank">Cédula de identificación</a>
                     </div>
                 </div>
