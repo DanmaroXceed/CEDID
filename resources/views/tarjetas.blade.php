@@ -7,10 +7,40 @@
 @endif
 
 @section('contenido')
-    <a 
-        class="btn btn-warning" 
+<style>
+    /* Estilos para el botón fijo */
+    .fixed-button {
+        position: fixed;
+        bottom: 10%; /* Espacio desde la parte inferior */
+        left: 2%;  /* Espacio desde la parte derecha */
+        z-index: 9999; /* Mantener el botón en el frente */
+        padding: 10px 20px;
+        font-size: 16px;
+    }
+
+    /* Responsivo: Ajustar tamaño del botón para pantallas más pequeñas */
+    @media (max-width: 768px) {
+        .fixed-button {
+            bottom: 8%;
+            left: 5%;
+            font-size: 14px;
+            padding: 8px 18px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .fixed-button {
+            bottom: 5%;
+            left: 5%;
+            font-size: 12px;
+            padding: 6px 16px;
+        }
+    }
+</style>
+
+<a 
+        class="btn btn-warning fixed-button" 
         href="/"
-        style="position: fixed; bottom: 5%; left: 2%;"
     >
         Regresar
     </a>

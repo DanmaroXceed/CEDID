@@ -44,45 +44,47 @@
         });
     </script>
 
-    <div style="
-    width: 60%;                /* Deja el 20% de espacio a cada lado */
-    background-color: #f0f0f0; /* Color de fondo del rectángulo */
-    border-radius: 15px;       /* Bordes redondeados */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra */
-    margin: 50px auto;         /* Centra el div horizontalmente */
-    padding: 20px;             /* Espaciado interior */
-    text-align: center;        /* Alineación de texto */
-    ">
-    <!-- Contenido dentro del rectángulo -->
-        <form wire:submit.prevent="buscar" class="px-4 pt-4">
-            @if(session('error'))
-                <div class="alert alert-danger">
-                    {{ session('error') }}
-                </div>
-            @endif
-            <input wire:model="nombre" class="mb-4 form-control input-login" type="text" placeholder="Nombre">
-
-            <input wire:model="estado" class="mb-4 form-control input-login" type="text" placeholder="Estado">
-
-            <input wire:model="municipio" class="mb-4 form-control input-login" type="text" placeholder="Municipio">
-
-            <div class="mb-4">
-                <label>
-                    <input wire:model="sexo" type="radio" value="H"> Masculino
-                </label>
-                <label class="ml-3">
-                    <input wire:model="sexo" type="radio" value="M"> Femenino
-                </label>
+<div style="
+width: 100%;                /* Cambiar a 100% para ajustarse al contenedor */
+max-width: 600px;          /* Limitar el ancho máximo para pantallas grandes */
+background-color: #f0f0f0; /* Color de fondo del rectángulo */
+border-radius: 15px;       /* Bordes redondeados */
+box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra */
+margin: 50px auto;         /* Centra el div horizontalmente */
+padding: 20px;             /* Espaciado interior */
+text-align: center;        /* Alineación de texto */
+">
+<!-- Contenido dentro del rectángulo -->
+    <form wire:submit.prevent="buscar" class="px-4 pt-4">
+        @if(session('error'))
+            <div class="alert alert-danger">
+                {{ session('error') }}
             </div>
-
-            <div class="">
-                <button type="button" wire:click="limpiar" class="btn btn-outline-danger">Limpiar</button>
-                <button class="btn btn-outline-success" type="submit">Buscar</button>
-            </div>
-        </form>
-
-        <div class="py-4">
-            <a class="btn btn-outline-primary" href="/listado">Visualizar todas las cedulas</a>
+        @endif
+        <input wire:model="nombre" class="mb-4 form-control input-login" type="text" placeholder="Nombre">
+        
+        <input wire:model="estado" class="mb-4 form-control input-login" type="text" placeholder="Estado">
+        
+        <input wire:model="municipio" class="mb-4 form-control input-login" type="text" placeholder="Municipio">
+        
+        <div class="mb-4">
+            <label class="me-2">
+                <input wire:model="sexo" type="radio" value="H"> Masculino
+            </label>
+            <label>
+                <input wire:model="sexo" type="radio" value="M"> Femenino
+            </label>
         </div>
+
+        <div class="d-flex justify-content-center">
+            <button type="button" wire:click="limpiar" class="btn btn-outline-danger me-2 p-2">Limpiar</button>
+            <button class="btn btn-outline-success p-2" type="submit">Buscar</button>
+        </div>
+    </form>
+
+    <div class="py-4">
+        <a class="btn btn-outline-primary" href="/listado">Visualizar todas las cedulas</a>
     </div>
+</div>
+
 </div>

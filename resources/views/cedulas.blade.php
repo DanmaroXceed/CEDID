@@ -1,9 +1,46 @@
 @extends('app')
 
 @section('contenido')
+<style>
+    /* Estilos para el botón fijo */
+    .fixed-button {
+        position: fixed;
+        bottom: 10%; /* Espacio desde la parte inferior */
+        left: 2%;  /* Espacio desde la parte derecha */
+        z-index: 9999; /* Mantener el botón en el frente */
+        padding: 10px 20px;
+        font-size: 16px;
+    }
+
+    /* Responsivo: Ajustar tamaño del botón para pantallas más pequeñas */
+    @media (max-width: 768px) {
+        .fixed-button {
+            bottom: 8%;
+            left: 5%;
+            font-size: 14px;
+            padding: 8px 18px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .fixed-button {
+            bottom: 5%;
+            left: 5%;
+            font-size: 12px;
+            padding: 6px 16px;
+        }
+    }
+</style>
+
+<a 
+        class="btn btn-warning fixed-button" 
+        href="/"
+    >
+        Regresar
+    </a>
 
 <div id="carouselExampleIndicators" class="carousel slide p-4" style="max-height: 70vh; width: 100%;" data-bs-ride="carousel">
-    <div class="text-center"><h1>Listado completo de cedulas de identificación</h1></div>
+    {{-- <div class="text-center"><h1>Listado completo de cedulas de identificación</h1></div> --}}
     <div class="carousel-inner">
         @if(count($data) > 0)
             @foreach ($data as $index => $d)
