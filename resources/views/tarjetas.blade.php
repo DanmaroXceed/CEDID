@@ -15,29 +15,6 @@
         Regresar
     </a>
 
-    {{-- <div class='container pt-4' >
-        <div class='row'>
-            @foreach ($data as $d)
-            <div class="col-md-2 mb-4"> <!-- Aquí definimos cuántas tarjetas caben por fila -->
-                <div class="card" style="width: 10rem;">
-                    <img src="{{ asset('fotos/' . $d->url) }}" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ $d->nombre }}</h5>
-                    </div>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">Fecha de nacimiento: <strong>{{ $d->fecha_nac }}</strong></li>
-                        <li class="list-group-item">Procedencia: <strong>{{ $d->d_muni }}, {{ $d->d_est }}</strong></li>
-                    </ul>
-                    <div class="card-body">
-                        <a href="{{ asset('cedulas/' . $d->cedid) . '.jpg' }}" class="btn btn-sm btn-outline-primary" target="_blank">Cédula de identificación</a>
-                        <!-- <a href="#" class="card-link">Another link</a> -->
-                    </div>
-                </div>
-            </div>
-            @endforeach
-        </div>
-    </div> --}}
-
     <div class="container pt-4">
         <div class="row">
             @foreach (session('data', []) as $d)

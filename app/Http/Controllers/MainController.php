@@ -14,15 +14,20 @@ class MainController extends Controller
     public function listado()
     {
         $query = DB::table('data')
-            ->select('data.*', 'fotos.url as url')  // Para obtener también la URL de la foto
-            ->join('fotos', 'data.foto_id', '=', 'fotos.id')
+            ->select('data.cedid')  // Para obtener también la URL de la foto
             ->where('estado_ident','=','NR');
 
         $data = $query->get();
-
-        session(['data' => $data]);
         
-        // dd($data);
-        return view('tarjetas', compact('data'));
+        return view('cedulas', compact('data'));
+    }
+
+    public function cedulas(){
+        $query = DB::table('data')
+            ->select('*')  // Para obtener también la URL de la foto
+            ->where('estado_ident','=','NR');
+        $data = $query->get();
+        
+        return view('cedulas', compact('data'));
     }
 }

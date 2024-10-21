@@ -54,10 +54,6 @@ class Buscador extends Component
 
         $data = $query->get();
         
-        // Guarda los datos en la sesión
-        session(['data' => $data]);
-        
-        // dd($data);
         return redirect()->route('filtrado')->with('data', $data);
     }
 
