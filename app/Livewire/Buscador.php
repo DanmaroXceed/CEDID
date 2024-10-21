@@ -20,7 +20,7 @@ class Buscador extends Component
         // $this->validate(); 
 
         // Validar que al menos un campo esté lleno
-        if (empty($this->nombre) && empty($this->estado) && empty($this->municipio) ) {
+        if (empty($this->nombre) && empty($this->estado) && empty($this->municipio) && empty($this->sexo) ) {
             // Devolver un error si no hay datos en ninguno de los campos
             session()->flash('error', 'Debes completar al menos un campo para buscar.');
             return;
