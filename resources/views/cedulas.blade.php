@@ -5,7 +5,7 @@
     /* Estilos para el botón fijo */
     .fixed-button {
         position: fixed;
-        bottom: 10%; /* Espacio desde la parte inferior */
+        bottom: 12%; /* Espacio desde la parte inferior */
         left: 2%;  /* Espacio desde la parte derecha */
         z-index: 9999; /* Mantener el botón en el frente */
         padding: 10px 20px;
@@ -15,7 +15,7 @@
     /* Responsivo: Ajustar tamaño del botón para pantallas más pequeñas */
     @media (max-width: 768px) {
         .fixed-button {
-            bottom: 8%;
+            bottom: 15%;
             left: 5%;
             font-size: 14px;
             padding: 8px 18px;
@@ -24,7 +24,7 @@
 
     @media (max-width: 480px) {
         .fixed-button {
-            bottom: 5%;
+            bottom: 12%;
             left: 5%;
             font-size: 12px;
             padding: 6px 16px;

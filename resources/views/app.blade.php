@@ -22,6 +22,11 @@
     @livewireStyles
 
     <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+        }
         /* Estilos personalizados para el navbar */
         .navbar-brand {
             flex-direction: column; /* Permitir que el logo y el título se apilen */
@@ -45,6 +50,66 @@
             margin-bottom: 10px; /* Espaciado inferior para separar del texto */
         }
 
+        .footer {
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center; /* Centra todo el contenido del footer */
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 10px;
+        }
+
+        .footer-center {
+            background-color: #003A70; /* Color de fondo */
+            color: white;
+            padding: 10px 20px; /* Espaciado interno */
+            display: flex;
+            align-items: center; /* Centra el texto verticalmente */
+            height: 70px; /* Altura del contenedor */
+            transform: skew(-20deg); /* Crea el efecto de paralelogramo */
+        }
+
+        .p-whi {
+            background-color: white; /* Color de fondo */
+            color: white;
+            padding: 2px; /* Espaciado interno */
+            display: flex;
+            align-items: center; /* Centra el texto verticalmente */
+            height: 70px; /* Altura del contenedor */
+            transform: skew(-20deg); /* Crea el efecto de paralelogramo */
+        }
+        
+        .p-gold {
+            background-color: #ada200; /* Color de fondo */
+            color: white;
+            padding: 5px; /* Espaciado interno */
+            display: flex;
+            align-items: center; /* Centra el texto verticalmente */
+            height: 70px; /* Altura del contenedor */
+            transform: skew(-20deg); /* Crea el efecto de paralelogramo */
+        }
+        
+        .footer-center p {
+            transform: skew(20deg); /* Compensa la inclinación del texto para que esté recto */
+            margin: 0; /* Elimina márgenes en el párrafo */
+        }
+
+        .footer-image {
+            width: auto; /* Ajusta el tamaño de las imágenes según sea necesario */
+            height: 70px;
+        }
+
+        .footer-image.left {
+            margin-right: 10px; /* Ajusta el espacio entre la imagen izquierda y el contenedor central */
+        }
+
+        .footer-image.right {
+            margin-left: 10px; /* Ajusta el espacio entre la imagen derecha y el contenedor central */
+        }
+
         /* Ajustes responsivos */
         @media (min-width: 768px) {
             .navbar-brand {
@@ -55,9 +120,31 @@
                 margin-top: 0; /* Eliminar el margen superior en pantallas grandes */
             }
         }
+        
+        @media (max-width: 1200px) {
+            .footer {
+                font-size: 50%; /* Ajusta este porcentaje según el tamaño deseado */
+            }
+
+            .footer-image {
+                width: auto; /* Ajusta el tamaño de las imágenes según sea necesario */
+                height: 50px; /* Ajusta el tamaño de las imágenes para pantallas medianas */
+            }
+        }
+        
+        @media (max-width: 600px) {
+            .footer {
+                font-size: 35%;
+            }
+
+            .footer-image {
+                width: auto; /* Ajusta el tamaño de las imágenes según sea necesario */
+                height: 35px;/* Ajusta el tamaño de las imágenes para pantallas pequeñas */
+            }
+        }
     </style>
 </head>
-<body style="height: 100vh; background: #e9e9e9">
+<body style="background: #e9e9e9">
     <nav class="navbar bg-body-tertiary" style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);">
         <div class="container-fluid px-4 px-md-5">
             <a class="navbar-brand d-flex align-items-center">
@@ -76,9 +163,23 @@
         </div>
     </nav>   
 
-    <div class="contenido" style="">
+    <div class="contenido" style="margin-bottom:100px">
         @yield('contenido')
     </div>
+
+    <footer class="footer">
+        <img src="{{ asset('footer/img-f-2') . '.jpg' }}" alt="Imagen Izquierda" class="footer-image left">
+        <div class="p-gold"></div>
+        <div class="p-whi"></div>
+        <div class="footer-center text-center">
+            <p>SI RECONOCE A ESTA PERSONA, FAVOR DE COMUNICARSE AL TELEFONO
+            <strong>TEL. 492 288 60 55</strong> CON PERSONAL DE LA
+            FISCALÍA ESPECIALIZADA EN DESAPARICION DE PERSONAS</p>
+        </div>
+        <div class="p-whi"></div>
+        <div class="p-gold"></div>
+        <img src="{{ asset('footer/img-f-1') . '.jpg' }}" alt="Imagen Derecha" class="footer-image right">
+    </footer>
     @livewireScripts
 </body>
 </html>
