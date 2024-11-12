@@ -22,8 +22,9 @@
     @livewireStyles
 
     <style>
+        @import url('https://fonts.googleapis.com/css?family=Raleway:400,700');
         body {
-            font-family: Arial, sans-serif;
+            font-family: Raleway, sans-serif;
             display: flex;
             flex-direction: column;
         }
@@ -147,18 +148,30 @@
 <body style="background: #e9e9e9">
     <nav class="navbar bg-body-tertiary" style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);">
         <div class="container-fluid px-4 px-md-5">
-            <a class="navbar-brand d-flex align-items-center">
+            <a class="navbar-brand d-flex align-items-center" href="/">
                 <img src="https://www.fiscaliazacatecas.gob.mx/wp-content/uploads/2019/03/logoweb-1.png" alt="Logo" class="me-2">
                 <h1 class="h4 mb-0 p-2">Busqueda de Cédulas de Identificación</h1>
             </a>
             <!-- Alinear el botón a la derecha en pantallas más grandes -->
-            <div class="d-none d-md-block"> <!-- Ocultar en móviles y mostrar en desktop -->
-                <a href="https://www.fiscaliazacatecas.gob.mx/" class="btn btn-outline-primary">Página Principal FGJEZ</a>
+            <div class="d-none d-md-flex"> <!-- Ocultar en móviles y mostrar en desktop -->
+                <a href="https://www.fiscaliazacatecas.gob.mx/" class="btn btn-outline-primary me-2">Página Principal FGJEZ</a>
+                @auth
+                    <form action="{{ route('logout') }}" method="POST">
+                        @csrf
+                        <button class="btn btn-outline-danger" type="submit">Salir</button>
+                    </form>
+                @endauth
             </div>
 
             <!-- Mostrar el botón centrado solo en móviles -->
             <div class="d-md-none w-100 text-center mt-2">
                 <a href="https://www.fiscaliazacatecas.gob.mx/" class="btn btn-outline-primary">Página Principal FGJEZ</a>
+                @auth
+                    <form class="justify-content-md-end" action="{{ route('logout') }}" method="POST">
+                        @csrf
+                        <button class="btn btn-outline-danger" type="submit">Salir</button>
+                    </form>
+                @endauth
             </div>
         </div>
     </nav>   
