@@ -38,7 +38,7 @@
     }
 </style>
 
-<a 
+    <a 
         class="btn btn-warning fixed-button" 
         href="/"
     >

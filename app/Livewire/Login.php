@@ -24,7 +24,7 @@ class Login extends Component
         ];
 
         if(Auth::attempt($credenciales)){
-            return $this->redirect('/dashboard', navigate: true);
+            return $this->redirect('/listado-admin', navigate: true);
         }else{
             session()->flash('error', 'Credenciales erroneas');
         }
