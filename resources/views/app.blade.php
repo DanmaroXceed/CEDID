@@ -111,6 +111,10 @@
             margin-left: 10px; /* Ajusta el espacio entre la imagen derecha y el contenedor central */
         }
 
+        .nav-link:hover {
+            color: #0202c5; /* Azul marino */
+        }
+
         /* Ajustes responsivos */
         @media (min-width: 768px) {
             .navbar-brand {
@@ -152,6 +156,12 @@
                 <img src="https://www.fiscaliazacatecas.gob.mx/wp-content/uploads/2019/03/logoweb-1.png" alt="Logo" class="me-2">
                 <h1 class="h4 mb-0 p-2">Busqueda de Cédulas de Identificación</h1>
             </a>
+            @auth
+            <div class="d-flex align-items-center">
+                <a class="mx-2 nav-link" href='/listado-admin'>Listado de administrador</a>
+                <a class="mx-2 nav-link" href="/captura">Capturar registro</a>
+            </div>
+            @endauth
             <!-- Alinear el botón a la derecha en pantallas más grandes -->
             <div class="d-none d-md-flex"> <!-- Ocultar en móviles y mostrar en desktop -->
                 <a href="https://www.fiscaliazacatecas.gob.mx/" class="btn btn-outline-primary me-2">Página Principal FGJEZ</a>

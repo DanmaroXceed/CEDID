@@ -59,7 +59,7 @@
                 <div class="d-flex align-items-center p-3 bg-white shadow-sm rounded-3">
                     <!-- Imagen -->
                     <div class="flex-shrink-0 me-3">
-                        <img src="{{ asset('fotos/' . $d->foto_url) }}" alt="Imagen de {{ $d->nombre }}" class="img-fluid rounded" style="width: 80px; height: 80px; object-fit: cover;">
+                        <img src="{{ Storage::disk('public')->exists('fotos/' . $d->foto_url) ? asset('storage/fotos/' . $d->foto_url) : asset('fotos/' . $d->foto_url) }}" alt="Imagen de {{ $d->nombre }}" class="img-fluid rounded" style="width: 80px; height: 80px; object-fit: cover;">
                     </div>
                     
                     <!-- Texto -->

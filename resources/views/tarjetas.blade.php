@@ -69,7 +69,7 @@
                         height: 100%; /* Asegura que todas las tarjetas tengan la misma altura */
                     ">
                         <!-- Imagen de la tarjeta -->
-                        <img src="{{ asset('fotos/' . $d->url) }}" alt="Foto" style="
+                        <img src="{{ Storage::disk('public')->exists('fotos/' . $d->url) ? asset('storage/fotos/' . $d->url) : asset('fotos/' . $d->url) }}" alt="Foto" style="
                             width: 100%;
                             height: auto;
                             border-radius: 10px;

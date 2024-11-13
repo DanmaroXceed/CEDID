@@ -13,4 +13,5 @@ Route::middleware(['auth', 'web'])->group(function () {
     Route::get('/listado-admin', [MainController::class, 'listado_admin'])->name('listado-admin');
     Route::post('/recuperado/{dato}', [MainController::class, 'recuperado'])->name('recuperado');
     Route::post('/logout', [MainController::class, 'logout'])->name('logout');
+    Route::get('/captura', [MainController::class, 'captura'])->name('captura');
 });

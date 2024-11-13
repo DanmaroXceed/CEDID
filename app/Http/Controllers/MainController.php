@@ -89,4 +89,12 @@ class MainController extends Controller
         
         return redirect('/');
     }
+
+    public function captura(){
+        return view('captura');
+    }
+
+    public function savecaptura(){
+        return view('captura');
+    }
 }
