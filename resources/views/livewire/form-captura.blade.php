@@ -123,8 +123,25 @@
 
             <!-- Foto -->
             <div class="col-12">
-                <label for="foto" class="form-label">Cargar Foto</label>
-                <input type="file" class="form-control" id="foto" accept="image" wire:model="foto" required>
+                <div
+                    x-data="{ uploading: false, progress: 0 }"
+                    x-on:livewire-upload-start="uploading = true"
+                    x-on:livewire-upload-finish="uploading = false"
+                    x-on:livewire-upload-cancel="uploading = false"
+                    x-on:livewire-upload-error="uploading = false"
+                    x-on:livewire-upload-progress="progress = $event.detail.progress"
+                >
+                    <!-- File Input -->
+                    <label for="foto" class="form-label">Cargar Foto</label>
+                    <input type="file" class="form-control" id="foto" accept="image/*" wire:model="foto">
+            
+                    <!-- Progress Bar -->
+                    <div x-show="uploading" class="upload-container">
+                        <div x-text='progress'></div>
+                        <progress max="100" x-bind:value="progress" ></progress>
+                    </div>
+                </div>
+                
                 @error('foto')
                     <small>{{ $message }}</small>
                 @enderror
@@ -132,8 +149,73 @@
 
             <!-- Botón de Enviar -->
             <div class="col-12 text-center mt-4">
-                <button type="submit" class="btn btn-success">Guardar Registro</button>
+                <button type="submit" class="btn btn-success" wire:loading.attr="disabled" wire:target="foto">Guardar Registro</button>
             </div>
         </div>
     </form>
+    
+    <style>
+        /* Contenedor para la barra de progreso */
+        .upload-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 20px;
+            padding: 20px;
+        }
+    
+        /* Estilo para la barra de progreso */
+        .upload-container progress {
+            width: 100%; /* Hace que la barra ocupe todo el ancho del contenedor */
+            height: 20px; /* Altura de la barra */
+            margin-top: 10px; /* Espaciado superior */
+            border-radius: 5px; /* Bordes redondeados */
+            background-color: #f3f3f3; /* Color de fondo */
+            -webkit-appearance: none; /* Quitar el estilo por defecto en WebKit */
+            appearance: none; /* Quitar el estilo por defecto */
+        }
+    
+        /* Estilo para la barra de progreso en navegadores WebKit (Chrome, Safari) */
+        .upload-container progress::-webkit-progress-bar {
+            background-color: #e0e0e0; /* Color del fondo de la barra */
+            border-radius: 5px;
+        }
+    
+        .upload-container progress::-webkit-progress-value {
+            background-color: #4caf50; /* Color de la parte cargada (verde) */
+            border-radius: 5px;
+            transition: width 0.3s ease-in-out; /* Suaviza la animación de la carga */
+        }
+    
+        /* Estilo para la barra de progreso en Firefox */
+        .upload-container progress::-moz-progress-bar {
+            background-color: #4caf50; /* Color de la parte cargada (verde) */
+            border-radius: 5px;
+            transition: width 0.3s ease-in-out;
+        }
+    
+        /* Estilo para el texto de porcentaje */
+        .upload-container div {
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 10px;
+            color: #4caf50; /* Color verde para el texto de porcentaje */
+        }
+    
+        /* Animación suave para el contenedor cuando aparece */
+        .uploading {
+            animation: fadeIn 0.5s ease-out;
+        }
+    
+        /* Definir la animación fade-in */
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+    </style>
 </div>

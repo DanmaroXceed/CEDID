@@ -73,6 +73,12 @@ class FormCaptura extends Component
         return redirect('/captura')->with('Ok', 'Registro guardado exitosamente');
     }
 
+    public function updatedFoto()
+    {
+        // Validar solo el campo `foto` al momento de actualizar
+        $this->validateOnly('foto');
+    }
+
     public function guardarfoto($archivo){
         // Obtener la extensión del archivo original
         $extension = $archivo->getClientOriginalExtension();
