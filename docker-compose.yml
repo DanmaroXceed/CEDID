@@ -1,0 +1,34 @@
+services:
+    app:
+        build:
+            context: .
+            target: php
+            dockerfile: Dockerfile
+        container_name: app-CDID
+        restart: unless-stopped
+        tty: true
+        working_dir: /var/www/
+        volumes:
+            - ./:/var/www/
+            - ./php/local.ini:/usr/local/etc/php/conf.d/local.ini
+        networks:
+            - CDID-Net
+
+    server:
+        image: nginx:alpine
+        container_name: server-CDID
+        restart: unless-stopped
+        ports:
+            - "80:80"
+            - "443:443"
+        volumes:
+            - ./:/var/www/
+            - ./nginx/conf.d/:/etc/nginx/conf.d/
+        depends_on:
+            - app
+        networks:
+            - CDID-Net
+
+networks:
+    CDID-Net:
+        driver: bridge
