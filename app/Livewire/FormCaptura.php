@@ -22,6 +22,7 @@ class FormCaptura extends Component
     public $tatuajes = '';
     public $señas = '';
     public $vestimenta = '';
+    public $fecha_ingreso = '';
     public $fecha_nac = '';
     public $d_calle = '';
     public $d_num = '';
@@ -31,10 +32,9 @@ class FormCaptura extends Component
     public $d_muni = '';
     public $d_localidad = '';
     
-    public $foto;
+    // public $foto;
     public $cedid = '';
 
-    public $fecha_ingreso = '';
     public $edad = '';
     public $foto_id = '';
     
@@ -45,7 +45,7 @@ class FormCaptura extends Component
         // $this->cedid = $this->generarCEDID($this);
 
         # Guardar foto
-        $this->foto_id = $this->guardarfoto($this->foto);
+        // $this->foto_id = $this->guardarfoto($this->foto);
 
         # Guardar registro - añadir nombre de cedula e id de foto
         $data = Data::create([
@@ -53,7 +53,7 @@ class FormCaptura extends Component
             'estado_ident' => $this->estado_ident,
             'nombre' => $this->nombre,
             'clave_elec' => $this->clave_elec,
-            'fecha_ingreso' => Carbon::today()->toDateString(),
+            'fecha_ingreso' => $this->fecha_ingreso,
             'tatuajes' => $this->tatuajes,
             'señas' => $this->señas,
             'vestimenta' => $this->vestimenta,
@@ -71,12 +71,6 @@ class FormCaptura extends Component
         ]);
 
         return redirect('/captura')->with('Ok', 'Registro guardado exitosamente');
-    }
-
-    public function updatedFoto()
-    {
-        // Validar solo el campo `foto` al momento de actualizar
-        $this->validateOnly('foto');
     }
 
     public function guardarfoto($archivo){
@@ -105,11 +99,12 @@ class FormCaptura extends Component
         return [
             'cni_ci' => 'required|max:50',
             'nombre' => 'required|max:100',
-            'clave_elec' => 'required|max:25',
-            'tatuajes' => 'required|max:750',
-            'señas' => 'required|max:750',
-            'vestimenta' => 'required|max:750',
+            'clave_elec' => 'max:25',
+            'tatuajes' => 'max:750',
+            'señas' => 'max:750',
+            'vestimenta' => 'max:750',
             'fecha_nac' => 'required',
+            'fecha_ingreso' => 'required',
             'd_calle' => 'required|max:50',
             'd_num' => 'required|max:15',
             'd_col' => 'required|max:50',
@@ -118,7 +113,7 @@ class FormCaptura extends Component
             'd_muni' => 'required|max:50',
             'd_localidad' => 'required|max:50',
 
-            'foto' => 'required|image|max:10240|mimes:jpeg,png,jpg,gif,svg'
+            // 'foto' => 'required|image|max:10240|mimes:jpeg,png,jpg,gif,svg'
         ];
     }
 

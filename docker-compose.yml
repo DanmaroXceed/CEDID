@@ -9,8 +9,10 @@ services:
         tty: true
         working_dir: /var/www/
         volumes:
-            - ./:/var/www/
+            - ./sistema:/var/www/
             - ./php/local.ini:/usr/local/etc/php/conf.d/local.ini
+        depends_on:
+            - db
         networks:
             - CDID-Net
 
@@ -19,13 +21,30 @@ services:
         container_name: server-CDID
         restart: unless-stopped
         ports:
-            - "80:80"
+            - "3020:80"
             - "443:443"
         volumes:
-            - ./:/var/www/
+            - ./sistema/:/var/www/
             - ./nginx/conf.d/:/etc/nginx/conf.d/
         depends_on:
             - app
+        networks:
+            - CDID-Net
+
+    db:
+        image: mysql:8.0
+        container_name: db-CDID
+        restart: unless-stopped
+        ports:
+            - "3306:3306"
+        environment:
+            MYSQL_DATABASE: cedid
+            MYSQL_ROOT_PASSWORD: KRfSZhw13k58
+            MYSQL_USER: admin
+            MYSQL_PASSWORD: KRfSZhw13k58
+        volumes:
+            - ./dbdata/:/var/lib/mysql/
+            - ./mysql/my.cnf:/etc/mysql/my.cnf
         networks:
             - CDID-Net
 
