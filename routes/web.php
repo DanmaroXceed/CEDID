@@ -9,7 +9,7 @@ Route::get('/listado', [MainController::class, 'listado'])->name('listado');
 Route::get('/busqueda', function () {return view('tarjetas'); })->name('filtrado');
 Route::get('/login', [MainController::class, 'login'])->name('login');
 
-Route::middleware(['auth', 'web'])->group(function () {
+Route::middleware(['auth'])->group(function () {
     Route::get('/listado-admin', [MainController::class, 'listado_admin'])->name('listado-admin');
     Route::post('/recuperado/{dato}', [MainController::class, 'recuperado'])->name('recuperado');
     Route::post('/logout', [MainController::class, 'logout'])->name('logout');
