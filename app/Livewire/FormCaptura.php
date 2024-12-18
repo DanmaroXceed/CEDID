@@ -48,6 +48,8 @@ class FormCaptura extends Component
         # Guardar foto
         if (!empty($this->foto)) {
             $this->foto_id = $this->guardarfoto($this->foto);
+        }else{
+            $this->foto_id = null;
         }
 
         # Guardar registro - añadir nombre de cedula e id de foto
