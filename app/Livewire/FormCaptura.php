@@ -37,6 +37,7 @@ class FormCaptura extends Component
 
     public $edad = '';
     public $foto_id = '';
+    public $foto;
     
     public function guardar(){
         $this->validate(); 
@@ -80,7 +81,7 @@ class FormCaptura extends Component
         try {
             // Verificar si el archivo ha sido cargado correctamente
             if (!$archivo || !$archivo->isValid()) {
-                throw new \Exception('El archivo no es válido o no se ha cargado correctamente.');
+                return session()->flash('error','El archivo no es válido o no se ha cargado correctamente.');
             }
 
             // Obtener la extensión del archivo original
@@ -89,7 +90,7 @@ class FormCaptura extends Component
             // Validar la extensión del archivo (por ejemplo, solo imágenes)
             $extensionesPermitidas = ['jpg', 'jpeg', 'png', 'gif'];
             if (!in_array(strtolower($extension), $extensionesPermitidas)) {
-                throw new \Exception('La extensión del archivo no es válida. Se permiten solo imágenes JPG, JPEG, PNG o GIF.');
+                return session()->flash('error','La extensión del archivo no es válida. Se permiten solo imágenes JPG, JPEG, PNG o GIF.');
             }
 
             // Generar un nombre aleatorio para el archivo
@@ -98,20 +99,20 @@ class FormCaptura extends Component
             // Intentar guardar el archivo en el directorio 'public/fotos'
             $path = $archivo->storeAs('fotos', $nombreArchivo, 'public');
             if (!$path) {
-                throw new \Exception('Hubo un problema al guardar el archivo.');
+                return session()->flash('error','Hubo un problema al guardar el archivo.');
             }
 
             // Crear un nuevo registro en la tabla de fotos y obtener el objeto creado
             $foto = Foto::create(['url' => $nombreArchivo]);
             if (!$foto) {
-                throw new \Exception('Hubo un problema al guardar los datos en la base de datos.');
+                return session()->flash('error','Hubo un problema al guardar los datos en la base de datos.');
             }
 
             // Devolver el id del registro creado
             return $foto->id;
         } catch (\Exception $e) {
             // Manejo de excepciones: devolver el mensaje de error
-            return 'Error: ' . $e->getMessage();
+            return session()->flash('error', $e->getMessage());
         }
     }
 

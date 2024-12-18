@@ -5,6 +5,13 @@
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
     @endif
+
+    @if (session('error'))
+    <div class="alert alert-danger alert-dismissible fade show" role="alert" style="width: 50%; margin: 0 auto; margin-bottom:20px;">
+        {{ session('error') }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    @endif
     <form wire:submit.prevent='guardar' enctype="multipart/form-data">
         <div class="row g-3">
             <!-- CNI/CI y Estado Identificación -->
