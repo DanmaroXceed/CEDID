@@ -125,7 +125,7 @@
             </div>
 
             <!-- Foto -->
-            {{-- <div class="col-12">
+            <div class="col-12">
                 <div
                     x-data="{ uploading: false, progress: 0 }"
                     x-on:livewire-upload-start="uploading = true"
@@ -133,13 +133,13 @@
                     x-on:livewire-upload-cancel="uploading = false"
                     x-on:livewire-upload-error="uploading = false"
                     x-on:livewire-upload-progress="progress = $event.detail.progress"
-                > --}}
+                >
                     <!-- File Input -->
-                    {{-- <label for="foto" class="form-label">Cargar Foto</label>
-                    <input type="file" class="form-control" id="foto" accept="image/*" wire:model="foto"> --}}
+                    <label for="foto" class="form-label">Cargar Foto</label>
+                    <input type="file" class="form-control" id="foto" accept="image/*" wire:model="foto">
             
                     <!-- Progress Bar -->
-                    {{-- <div x-show="uploading" class="upload-container">
+                    <div x-show="uploading" class="upload-container">
                         <div x-text='progress'></div>
                         <progress max="100" x-bind:value="progress" ></progress>
                     </div>
@@ -148,7 +148,7 @@
                 @error('foto')
                     <small>{{ $message }}</small>
                 @enderror
-            </div> --}}
+            </div>
 
             <!-- Botón de Enviar -->
             <div class="col-12 text-center mt-4">

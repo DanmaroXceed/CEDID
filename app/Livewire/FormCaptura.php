@@ -45,7 +45,9 @@ class FormCaptura extends Component
         // $this->cedid = $this->generarCEDID($this);
 
         # Guardar foto
-        // $this->foto_id = $this->guardarfoto($this->foto);
+        if (!empty($this->foto)) {
+            $this->foto_id = $this->guardarfoto($this->foto);
+        }
 
         # Guardar registro - añadir nombre de cedula e id de foto
         $data = Data::create([
@@ -73,21 +75,44 @@ class FormCaptura extends Component
         return redirect('/captura')->with('Ok', 'Registro guardado exitosamente');
     }
 
-    public function guardarfoto($archivo){
-        // Obtener la extensión del archivo original
-        $extension = $archivo->getClientOriginalExtension();
+    public function guardarfoto($archivo)
+    {
+        try {
+            // Verificar si el archivo ha sido cargado correctamente
+            if (!$archivo || !$archivo->isValid()) {
+                throw new \Exception('El archivo no es válido o no se ha cargado correctamente.');
+            }
 
-        // Generar un nombre aleatorio para el archivo
-        $nombreArchivo = Str::random(10) . '.' . $extension;
+            // Obtener la extensión del archivo original
+            $extension = $archivo->getClientOriginalExtension();
 
-        // Guardar el archivo en public/fotos
-        $archivo->storeAs('fotos', $nombreArchivo, 'public');
+            // Validar la extensión del archivo (por ejemplo, solo imágenes)
+            $extensionesPermitidas = ['jpg', 'jpeg', 'png', 'gif'];
+            if (!in_array(strtolower($extension), $extensionesPermitidas)) {
+                throw new \Exception('La extensión del archivo no es válida. Se permiten solo imágenes JPG, JPEG, PNG o GIF.');
+            }
 
-        // Crear un nuevo registro en la tabla de fotos y obtener el objeto creado
-        $foto = Foto::create(['url' => $nombreArchivo]);
+            // Generar un nombre aleatorio para el archivo
+            $nombreArchivo = Str::random(10) . '.' . $extension;
 
-        // Devolver el id del registro creado
-        return $foto->id;
+            // Intentar guardar el archivo en el directorio 'public/fotos'
+            $path = $archivo->storeAs('fotos', $nombreArchivo, 'public');
+            if (!$path) {
+                throw new \Exception('Hubo un problema al guardar el archivo.');
+            }
+
+            // Crear un nuevo registro en la tabla de fotos y obtener el objeto creado
+            $foto = Foto::create(['url' => $nombreArchivo]);
+            if (!$foto) {
+                throw new \Exception('Hubo un problema al guardar los datos en la base de datos.');
+            }
+
+            // Devolver el id del registro creado
+            return $foto->id;
+        } catch (\Exception $e) {
+            // Manejo de excepciones: devolver el mensaje de error
+            return 'Error: ' . $e->getMessage();
+        }
     }
 
     public function generarCEDID(){
