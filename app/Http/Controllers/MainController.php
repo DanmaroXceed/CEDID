@@ -45,7 +45,7 @@ class MainController extends Controller
 
         // Construimos la consulta base
         $data = DB::table('data')
-            ->join('fotos', 'data.foto_id', '=', 'fotos.id')
+            ->leftjoin('fotos', 'data.foto_id', '=', 'fotos.id')
             ->select('data.*', 'fotos.url as foto_url')
             ->where('estado_ident', '=', 'NR');
 
