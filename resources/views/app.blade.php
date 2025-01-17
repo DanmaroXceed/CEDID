@@ -154,7 +154,7 @@
         <div class="container-fluid px-4 px-md-5">
             <a class="navbar-brand d-flex align-items-center" href="/">
                 <img src="https://www.fiscaliazacatecas.gob.mx/wp-content/uploads/2019/03/logoweb-1.png" alt="Logo" class="me-2">
-                <h1 class="h4 mb-0 p-2">Busqueda de Cédulas de Identificación</h1>
+                <h1 class="h4 mb-0 p-2">Búsqueda de Cédulas de Identificación</h1>
             </a>
             @auth
             <div class="d-flex align-items-center">
