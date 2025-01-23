@@ -73,7 +73,6 @@
                         <form action="{{ route('recuperado', ['dato' => $d->id]) }}" method="POST">
                             @csrf
                             <button class="btn btn-warning d-flex align-items-center" type="submit" onclick="return confirmRecuperado()">
-                                <i class="fas fa-info-circle me-2"></i>
                                 <strong>Recuperado</strong>
                             </button>
                         </form>

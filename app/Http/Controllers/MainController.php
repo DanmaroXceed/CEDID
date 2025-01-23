@@ -18,8 +18,8 @@ class MainController extends Controller
     public function listado()
     {
         $query = DB::table('data')
-            ->select('data.cedid')  // Para obtener también la URL de la foto
-            ->where('estado_ident','=','NR');
+            ->select('data.cedid')
+            ->where('estado_ident','!=','R');
 
         $data = $query->get();
         
@@ -29,7 +29,7 @@ class MainController extends Controller
     public function cedulas(){
         $query = DB::table('data')
             ->select('*')  // Para obtener también la URL de la foto
-            ->where('estado_ident','=','NR');
+            ->where('estado_ident','!=','R');
         $data = $query->get();
         
         return view('cedulas', compact('data'));
@@ -47,7 +47,7 @@ class MainController extends Controller
         $data = DB::table('data')
             ->leftjoin('fotos', 'data.foto_id', '=', 'fotos.id')
             ->select('data.*', 'fotos.url as foto_url')
-            ->where('estado_ident', '=', 'NR');
+            ->where('estado_ident', '!=','R');
 
         // Si hay un query, aplicamos el filtro
         if ($query) {

@@ -43,7 +43,7 @@ class FormCaptura extends Component
         $this->validate(); 
 
         # Generar cedula con datos
-        // $this->cedid = $this->generarCEDID($this);
+        $this->cedid = $this->generarCEDID();
 
         # Guardar foto
         if (!empty($this->foto)) {
@@ -52,8 +52,8 @@ class FormCaptura extends Component
             $this->foto_id = null;
         }
 
-        # Guardar registro - añadir nombre de cedula e id de foto
-        $data = Data::create([
+        # Guardar registro - añadir nombre de cedula
+        Data::create([
             'cni_ci' => $this->cni_ci,
             'estado_ident' => $this->estado_ident,
             'nombre' => $this->nombre,
