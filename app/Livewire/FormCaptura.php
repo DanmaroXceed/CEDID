@@ -79,11 +79,9 @@ class FormCaptura extends Component
             'foto_id' => $this->foto_id,
         ]);
 
-        $imageUrl = Storage::disk('public')->path('cedulas/' . $this->cedid . '.jpg');
-
         return redirect('/captura')->with([
             'Ok' => 'Registro guardado exitosamente',
-            'imageUrl' => $imageUrl
+            'imageUrl' => $this->cedid
         ]);
     }
 

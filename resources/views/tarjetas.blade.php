@@ -83,7 +83,7 @@
                         
                         <!-- Botón de la tarjeta -->
                         <div style="padding-top: 10px;">
-                            <a href="{{ asset('cedulas/' . $d->cedid) . '.jpg' }}" class="btn btn-sm btn-outline-primary" target="_blank">Cédula de identificación</a>
+                            <a href="{{ Storage::disk('public')->exists('cedulas/' . $d->cedid . '.jpg') ? asset('storage/cedulas/' . $d->cedid . '.jpg') : asset('cedulas/' . $d->cedid . '.jpg') }}" class="btn btn-sm btn-outline-primary" target="_blank">Cédula de identificación</a>
                         </div>
                     </div>
                 </div>

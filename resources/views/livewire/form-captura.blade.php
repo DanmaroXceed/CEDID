@@ -14,8 +14,15 @@
     @endif
 
     @if(session('imageUrl'))
-        <a class="btn btn-success" href="{{ session('imageUrl') }}" target="_blank">Ver la cedula generada - {{ session('imageUrl') }}</a>
+        <div class="d-flex justify-content-center">
+            <a class="btn btn-success mb-3" 
+                href="{{ Storage::disk('public')->exists('cedulas/' . session('imageUrl') . '.jpg') ? asset('storage/cedulas/' . session('imageUrl') . '.jpg') : asset('cedulas/' . session('imageUrl') . '.jpg') }}" 
+                target="_blank">
+                Ver la cedula generada
+            </a>
+        </div>
     @endif
+
     <form wire:submit.prevent='guardar' enctype="multipart/form-data">
         <div class="row g-3">
             <!-- CNI/CI y Estado Identificación -->

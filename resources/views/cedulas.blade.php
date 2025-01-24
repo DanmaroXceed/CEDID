@@ -45,7 +45,7 @@
         @if(count($data) > 0)
             @foreach ($data as $index => $d)
                 <div class="carousel-item {{ $index == 0 ? 'active' : '' }}">
-                    <img src="{{ asset('cedulas/' . $d->cedid) . '.jpg' }}" class="d-block w-100" alt="Imagen" style="object-fit: contain; height: 100%; max-height: 70vh;">
+                    <img src="{{ Storage::disk('public')->exists('cedulas/' . $d->cedid . '.jpg') ? asset('storage/cedulas/' . $d->cedid . '.jpg') : asset('cedulas/' . $d->cedid . '.jpg') }}" class="d-block w-100" alt="Imagen" style="object-fit: contain; height: 100%; max-height: 70vh;">
                 </div>
             @endforeach
         @else
