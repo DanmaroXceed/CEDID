@@ -39,7 +39,7 @@ class FormCaptura extends Component
     public $edad = '';
     public $foto_id = '';
     public $foto;
-    
+
     public function guardar(){
         $this->validate(); 
 

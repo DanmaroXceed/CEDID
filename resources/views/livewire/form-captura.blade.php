@@ -170,7 +170,15 @@
 
             <!-- Botón de Enviar -->
             <div class="col-12 text-center mt-4">
-                <button type="submit" class="btn btn-success" wire:loading.attr="disabled" wire:target="foto">Guardar Registro</button>
+                <button type="submit" class="btn btn-success" wire:loading.attr="disabled" wire:target="foto" onclick="mostrarModal()">Guardar Registro</button>
+            </div>
+
+        </div>
+        
+        <div id="GenCedid" class="modal d-flex align-items-center justify-content-center show d-none" tabindex="-1" style="background-color: rgba(0, 0, 0, 0.5);">
+            <div class="text-center text-white">
+                <div class="spinner-border" role="status" style="width: 3rem; height: 3rem;"></div>
+                <p class="mt-3">Cargando datos y generando cédula...</p>
             </div>
         </div>
     </form>
@@ -239,4 +247,14 @@
             }
         }
     </style>
+
+<script>
+    function mostrarModal() {
+        const modal = document.getElementById('GenCedid');
+
+        // Mostrar el modal
+        modal.classList.remove('d-none');
+    }
+</script>
+
 </div>
