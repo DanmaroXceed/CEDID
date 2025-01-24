@@ -68,12 +68,16 @@
                         {{-- <small class="text-muted">{{ $d->descripcion }}</small> --}}
                     </div>
                     
+                    <div class="ms-3">
+                        <a href="{{ Storage::disk('public')->exists('cedulas/' . $d->cedid . '.jpg') ? asset('storage/cedulas/' . $d->cedid . '.jpg') : asset('cedulas/' . $d->cedid . '.jpg') }}" class="btn btn-sm btn-outline-primary px-2" target="_blank">Cédula de identificación</a>
+                    </div>
+                    
                     <!-- Botón -->
                     <div class="ms-3">
                         <form action="{{ route('recuperado', ['dato' => $d->id]) }}" method="POST">
                             @csrf
                             <button class="btn btn-warning d-flex align-items-center" type="submit" onclick="return confirmRecuperado()">
-                                <strong>Recuperado</strong>
+                                <strong>Registrar como RECUPERADO</strong>
                             </button>
                         </form>
                     </div>
