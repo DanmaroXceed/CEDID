@@ -12,6 +12,10 @@
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
     @endif
+
+    @if(session('imageUrl'))
+        <a class="btn btn-success" href="{{ session('imageUrl') }}" target="_blank">Ver la cedula generada - {{ session('imageUrl') }}</a>
+    @endif
     <form wire:submit.prevent='guardar' enctype="multipart/form-data">
         <div class="row g-3">
             <!-- CNI/CI y Estado Identificación -->

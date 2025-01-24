@@ -3,12 +3,13 @@
 namespace App\Livewire;
 
 use Livewire\Component;
-use Livewire\Attributes\Validate;
 use Livewire\WithFileUploads;
 use Carbon\Carbon;
 use App\Models\Data;
 use App\Models\Foto;
 use Illuminate\Support\Str;
+use Intervention\Image\ImageManager;
+use Intervention\Image\Drivers\Gd\Driver;
 use Illuminate\Support\Facades\Storage;
 
 class FormCaptura extends Component
@@ -42,15 +43,18 @@ class FormCaptura extends Component
     public function guardar(){
         $this->validate(); 
 
-        # Generar cedula con datos
-        $this->cedid = $this->generarCEDID();
-
+        $ultimoRegistro = Data::latest('id')->first();
+        $Id = $ultimoRegistro ? $ultimoRegistro->id+1 : 1;
+        
         # Guardar foto
         if (!empty($this->foto)) {
-            $this->foto_id = $this->guardarfoto($this->foto);
+            $this->foto_id = $this->guardarfoto($this->foto, $Id);
         }else{
             $this->foto_id = null;
         }
+
+        # Generar cedula con datos
+        $this->cedid = $this->generarCEDID($Id);
 
         # Guardar registro - añadir nombre de cedula
         Data::create([
@@ -75,10 +79,15 @@ class FormCaptura extends Component
             'foto_id' => $this->foto_id,
         ]);
 
-        return redirect('/captura')->with('Ok', 'Registro guardado exitosamente');
+        $imageUrl = Storage::disk('public')->path('cedulas/' . $this->cedid . '.jpg');
+
+        return redirect('/captura')->with([
+            'Ok' => 'Registro guardado exitosamente',
+            'imageUrl' => $imageUrl
+        ]);
     }
 
-    public function guardarfoto($archivo)
+    public function guardarfoto($archivo, $Id)
     {
         try {
             // Verificar si el archivo ha sido cargado correctamente
@@ -96,7 +105,7 @@ class FormCaptura extends Component
             }
 
             // Generar un nombre aleatorio para el archivo
-            $nombreArchivo = Str::random(10) . '.' . $extension;
+            $nombreArchivo = $Id . '.' . $extension;
 
             // Intentar guardar el archivo en el directorio 'public/fotos'
             $path = $archivo->storeAs('fotos', $nombreArchivo, 'public');
@@ -118,10 +127,115 @@ class FormCaptura extends Component
         }
     }
 
-    public function generarCEDID(){
+    public function generarCEDID($id)
+    {
+        try {
+            // Crear el administrador de imágenes con el driver GD
+            $manager = new ImageManager(new Driver());
+    
+            // Ruta de la plantilla
+            $plantillaPath = public_path('plantilla_cedula.jpg');
+    
+            // Verificar si la plantilla existe
+            if (!file_exists($plantillaPath)) {
+                throw new \Exception('La plantilla para la CEDID no se encontró.');
+            }
+    
+            // Abrir la plantilla
+            $img = $manager->read($plantillaPath);
 
+            $fotoName = Foto::findOrFail($this->foto_id)->url;
+    
+            // Ruta a la foto del individuo
+            $fotoPath = Storage::disk('public')->exists('fotos/' . $fotoName) 
+                ? Storage::disk('public')->path('fotos/' . $fotoName) 
+                : public_path('fotos/' . $fotoName);
+
+            if (!file_exists($fotoPath)) {
+                throw new \Exception('La foto del individuo no se encontró.');
+            }
+
+            $foto = $manager->read($fotoPath);
+    
+            // Cargar y redimensionar la foto del individuo
+            $foto->resize(285, 330);
+    
+            // Insertar la foto en la plantilla
+            $img->place($foto, 'top-left', 258, 230); // Ajustar posición según necesidad
+    
+            // Configurar las fuentes y el texto
+            $fontPath = public_path('Roboto-Regular.ttf'); // Ruta a la fuente
+            $fontBPath = public_path('Roboto-Bold.ttf'); // Ruta a la fuente
+            $color = '#000000'; // Color del texto
+            $nameColor = '#9f8d41';
+    
+            // Insertar nombre
+            $img->text(strtoupper($this->nombre), 400, 190, function ($font) use ($fontBPath, $nameColor) {
+                $font->file($fontBPath);
+                $font->size(36);
+                $font->color($nameColor);
+                $font->align('center');
+                $font->valign('middle');
+            });
+                
+            // Insertar fecha de nacimiento
+            $img->text($this->fecha_nac, 300, 668, function ($font) use ($fontPath, $color) {
+                $font->file($fontPath);
+                $font->size(24);
+                $font->color($color);
+            });
+    
+            // Insertar colonia
+            $img->text(strtoupper($this->d_col), 163, 702, function ($font) use ($fontPath, $color) {
+                $font->file($fontPath);
+                $font->size(24);
+                $font->color($color);
+            });
+    
+            // Insertar municipio
+            $img->text(strtoupper($this->d_muni), 190, 737, function ($font) use ($fontPath, $color) {
+                $font->file($fontPath);
+                $font->size(24);
+                $font->color($color);
+            });
+    
+            // Insertar estado
+            $img->text(strtoupper($this->d_est), 155, 772, function ($font) use ($fontPath, $color) {
+                $font->file($fontPath);
+                $font->size(24);
+                $font->color($color);
+            });
+    
+            // Insertar fecha de ingreso
+            $img->text($this->fecha_ingreso, 270, 807   , function ($font) use ($fontPath, $color) {
+                $font->file($fontPath);
+                $font->size(24);
+                $font->color($color);
+            });
+            
+            $numeroConCeros = str_pad($id, 4, '0', STR_PAD_LEFT);
+
+            // Generar un nombre único para el archivo
+            $cedidFileName = 'Cedulas Identificacion fmt5_page-' . $numeroConCeros;
+
+            // Verificar si el directorio existe, si no, crearlo
+            $directory = Storage::disk('public')->path('cedulas');
+            if (!is_dir($directory)) {
+                mkdir($directory, 0777, true); // Crear el directorio con permisos adecuados
+            }
+    
+            // Guardar la imagen generada
+            $outputPath = Storage::disk('public')->path('cedulas/' . $cedidFileName . '.jpg');
+
+            $img->save($outputPath);
+    
+            return $cedidFileName; // Retornar el nombre del archivo
+        } catch (\Exception $e) {
+            // Manejo de errores
+            throw new \Exception('Error al generar la CEDID: ' . $e->getMessage());
+        }
     }
-
+    
     public function rules()
     {
         return [
