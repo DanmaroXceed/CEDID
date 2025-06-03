@@ -55,12 +55,12 @@ padding: 20px;             /* Espaciado interior */
 text-align: center;        /* Alineación de texto */
 ">
 <!-- Contenido dentro del rectángulo -->
+    @if(session('error'))
+        <div class="alert alert-danger">
+            {{ session('error') }}
+        </div>
+    @endif
     <form wire:submit.prevent="buscar" class="px-4 pt-4">
-        @if(session('error'))
-            <div class="alert alert-danger">
-                {{ session('error') }}
-            </div>
-        @endif
         <input wire:model="nombre" class="mb-4 form-control input-login" type="text" placeholder="Nombre">
         
         <input wire:model="estado" class="mb-4 form-control input-login" type="text" placeholder="Estado">
