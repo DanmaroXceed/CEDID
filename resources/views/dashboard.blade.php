@@ -77,7 +77,7 @@
                         <form action="{{ route('recuperado', ['dato' => $d->id]) }}" method="POST">
                             @csrf
                             <button class="btn btn-warning d-flex align-items-center" type="submit" onclick="return confirmRecuperado()">
-                                <strong>Registrar como RECUPERADO</strong>
+                                <strong>Registrar como ENTREGADO</strong>
                             </button>
                         </form>
                     </div>

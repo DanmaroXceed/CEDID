@@ -160,6 +160,9 @@
             <div class="d-flex align-items-center">
                 <a class="mx-2 nav-link" href='/listado-admin'>Listado de administrador</a>
                 <a class="mx-2 nav-link" href="/captura">Capturar registro</a>
+                @if (auth()->user()->type == 1)
+                    <a class="mx-2 nav-link" href="/usrs">Usuarios</a>
+                @endif
             </div>
             @endauth
             <!-- Alinear el botón a la derecha en pantallas más grandes -->

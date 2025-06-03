@@ -14,4 +14,6 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/recuperado/{dato}', [MainController::class, 'recuperado'])->name('recuperado');
     Route::post('/logout', [MainController::class, 'logout'])->name('logout');
     Route::get('/captura', [MainController::class, 'captura'])->name('captura');
+    Route::get('/usrs', [MainController::class, 'usrs'])->name('usrs');
+    Route::get('/usrs/reg-usr', [MainController::class, 'reg_usr'])->name('reg-usr');
 });

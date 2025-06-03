@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Data;
 use App\Models\Movimiento;
+
+use function PHPSTORM_META\type;
 use function Termwind\render;
 
 class MainController extends Controller
@@ -96,5 +98,18 @@ class MainController extends Controller
 
     public function savecaptura(){
         return view('captura');
+    }
+
+    public function usrs(){
+        $usrs = DB::table('users')
+            ->select('name', 'email', 'type')
+            ->where('name', '!=','AdminCEDID')
+            ->get();
+
+        return view('usrs', compact('usrs'));
+    }
+
+    public function reg_usr(){
+        return view('reg-usr');
     }
 }
