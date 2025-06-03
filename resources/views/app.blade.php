@@ -165,6 +165,7 @@
             <!-- Alinear el botón a la derecha en pantallas más grandes -->
             <div class="d-none d-md-flex"> <!-- Ocultar en móviles y mostrar en desktop -->
                 <a href="https://www.fiscaliazacatecas.gob.mx/" class="btn btn-outline-primary me-2">Página Principal FGJEZ</a>
+                <a href="https://accesosemefo.fiscaliazacatecas.gob.mx/" class="btn btn-outline-success me-2">Acceso a SEMEFO</a>
                 @auth
                     <form action="{{ route('logout') }}" method="POST">
                         @csrf
