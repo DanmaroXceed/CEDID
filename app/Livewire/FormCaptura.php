@@ -205,11 +205,11 @@ class FormCaptura extends Component
             });
     
             // Insertar fecha de ingreso
-            $img->text($this->fecha_ingreso, 270, 807   , function ($font) use ($fontPath, $color) {
-                $font->file($fontPath);
-                $font->size(24);
-                $font->color($color);
-            });
+            // $img->text($this->fecha_ingreso, 270, 807   , function ($font) use ($fontPath, $color) {
+            //     $font->file($fontPath);
+            //     $font->size(24);
+            //     $font->color($color);
+            // });
             
             $numeroConCeros = str_pad($id, 4, '0', STR_PAD_LEFT);
 
