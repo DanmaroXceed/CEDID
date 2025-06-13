@@ -9,13 +9,14 @@ use Livewire\Component;
 
 class RegisterUser extends Component
 {
-    public $name, $email, $password, $password_confirmation;
+    public $name, $email, $password, $password_confirmation, $type;
 
     protected $rules = [
         'name' => 'required|min:3',
         'email' => 'required|email|unique:users,email',
         'password' => 'required|min:6|same:password_confirmation',
         'password_confirmation' => 'required|min:6',
+        'type' => 'required',
     ];
 
     public function updated($propertyName)
@@ -31,7 +32,7 @@ class RegisterUser extends Component
             'name' => $this->name,
             'email' => $this->email,
             'password' => Hash::make($this->password),
-            'type' => 2
+            'type' => (int) $this->type
         ]);
 
         session()->flash('message', 'Usuario registrado exitosamente.');
@@ -52,6 +53,8 @@ class RegisterUser extends Component
 
         'password_confirmation.required' => 'Por favor confirma la contraseña.',
         'password_confirmation.min' => 'La confirmación debe tener al menos :min caracteres.',
+
+        'type.required' => 'El tipo es obligatorio.',
     ];
 
     public function render()

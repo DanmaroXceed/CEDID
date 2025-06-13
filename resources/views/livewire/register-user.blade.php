@@ -18,6 +18,20 @@
         </div>
 
         <div class="mb-3">
+            <label for="type" class="form-label">Tipo</label>
+            <select wire:model.debounce.500ms="type" id="type"
+                class="form-select @error('type') is-invalid @enderror">
+                <option value="">Seleccione una opción</option>
+                <option value="1">Administrador</option>
+                <option value="2">General</option>
+                <!-- Agrega más opciones según lo que uses -->
+            </select>
+            @error('type')
+                <span class="invalid-feedback">{{ $message }}</span>
+            @enderror
+        </div>
+
+        <div class="mb-3">
             <label for="email" class="form-label">Correo Electrónico</label>
             <input type="email" wire:model.debounce.500ms="email" id="email"
                 class="form-control @error('email') is-invalid @enderror">
