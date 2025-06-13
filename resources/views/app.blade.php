@@ -237,7 +237,7 @@
             @auth
                 <div class="d-flex align-items-center">
                     @if (auth()->user()->type == 1)
-                        <a class="mx-2 nav-link {{ request()->is('x') ? 'active' : '' }}" href="/listado-completo">Listado
+                        <a class="mx-2 nav-link {{ request()->is('listado_completo') ? 'active' : '' }}" href="/listado-completo">Listado
                             completo</a>
                         <a class="mx-2 nav-link {{ request()->is('usrs*') ? 'active' : '' }}" href="/usrs">Usuarios</a>
                     @endif

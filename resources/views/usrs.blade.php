@@ -28,7 +28,7 @@
                                     <h5 class="card-title">{{ $usr->name }}</h5>
                                     <p class="card-text">
                                         <strong>Email:</strong> {{ $usr->email }}<br>
-                                        <strong>Tipo:</strong> {{ $usr->type == 2 ? 'General' : 'Administrador' }}
+                                        <strong>Tipo:</strong> {{ $usr->type == 2 ? 'Administrador' : 'General' }}
                                     </p>
                                 </div>
                             </div>
