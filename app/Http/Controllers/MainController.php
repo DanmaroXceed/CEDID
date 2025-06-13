@@ -52,12 +52,36 @@ class MainController extends Controller
     {
         // Obtenemos el valor de la búsqueda
         $query = $request->get('query');
+        session(['lc' => false]);
 
         // Construimos la consulta base
         $data = DB::table('data')
             ->leftjoin('fotos', 'data.foto_id', '=', 'fotos.id')
             ->select('data.*', 'fotos.url as foto_url')
             ->where('estado_ident', '!=', 'R');
+
+        // Si hay un query, aplicamos el filtro
+        if ($query) {
+            $data->where('nombre', 'like', "%{$query}%");
+        }
+
+        // Obtenemos los resultados con paginación
+        $data = $data->paginate(10);
+
+        // Devolvemos la vista con los datos paginados
+        return view('dashboard', compact('data'));
+    }
+
+    public function listado_completo(Request $request)
+    {
+        // Obtenemos el valor de la búsqueda
+        $query = $request->get('query');
+        session(['lc' => true]);
+
+        // Construimos la consulta base
+        $data = DB::table('data')
+            ->leftjoin('fotos', 'data.foto_id', '=', 'fotos.id')
+            ->select('data.*', 'fotos.url as foto_url');
 
         // Si hay un query, aplicamos el filtro
         if ($query) {
@@ -154,7 +178,35 @@ class MainController extends Controller
                 'user_name' => Auth::user()->name ?? 'N/A',
             ]);
 
-            return redirect()->back()->with('error', 'Hubo un problema al actualizar el estado. Revisa el log para más detalles.');
+            return redirect()->back()->with('error', 'Hubo un problema al actualizar el estado. Contacta con un administrador para más detalles.');
+        }
+    }
+
+    public function fr($dato){
+        try{
+            $data = Data::findOrFail($dato);
+            $data->estado_ident = 'FR';
+            $data->save();
+            Movimiento::create([
+                'user_id'     => Auth::id(),
+                'descripcion' => 'El usuario ' . Auth::user()->name
+                    . ' marcó como Finalmente reconocido el elemento con ID ' . $dato,
+            ]);
+
+            return redirect()->route('listado-admin')->with([
+                'success' => 'Estado actualizado correctamente',
+            ]);
+        } catch (\Exception $e) {
+            Log::error("Error al marcar como recuperado el ID {$dato}: " . $e->getMessage(), [
+                'exception_class' => get_class($e),
+                'file' => $e->getFile(),
+                'line' => $e->getLine(),
+                'cedid' => $data->cni_ci ?? 'N/D',
+                'user_id' => Auth::user()->id ?? 'N/A',
+                'user_name' => Auth::user()->name ?? 'N/A',
+            ]);
+
+            return redirect()->back()->with('error', 'Hubo un problema al actualizar el estado. Contacta con un administrador para más detalles.');
         }
     }
 

@@ -95,16 +95,64 @@
                                 class="btn btn-sm btn-outline-primary px-2" target="_blank">Cédula de identificación</a>
                         </div>
 
-                        <!-- Botón -->
-                        <div class="ms-3">
-                            <form action="{{ route('recuperado', ['dato' => $d->id]) }}" method="POST">
-                                @csrf
-                                <button class="btn btn-warning d-flex align-items-center" type="submit"
-                                    onclick="return confirmRecuperado()">
-                                    <strong>Registrar como ENTREGADO</strong>
-                                </button>
-                            </form>
-                        </div>
+                        @if (session('lc'))
+                            @php
+                                $estadoTexto = '';
+                                $badgeClass = '';
+
+                                switch ($d->estado_ident) {
+                                    case 'NR':
+                                        $estadoTexto = 'No Reconocido';
+                                        $badgeClass = 'badge bg-secondary'; // gris
+                                        break;
+                                    case 'R':
+                                        $estadoTexto = 'Entregado';
+                                        $badgeClass = 'badge bg-success'; // verde
+                                        break;
+                                    case 'FR':
+                                        $estadoTexto = 'Finalmente Reconocido';
+                                        $badgeClass = 'badge bg-primary'; // azul
+                                        break;
+                                    default:
+                                        $estadoTexto = 'Estado Desconocido';
+                                        $badgeClass = 'badge bg-dark'; // negro
+                                        break;
+                                }
+                            @endphp
+
+                            <div class="ms-3">
+                                <span class="{{ $badgeClass }} px-3 py-2 fs-6 fw-semibold">
+                                    {{ $estadoTexto }}
+                                </span>
+                            </div>
+                        @else
+                            <div class="ms-3">
+                                <div class="text-center mb-3">
+                                    <span class="fw-semibold">Marcar como:</span>
+                                </div>
+
+                                <div class="d-grid gap-2">
+                                    {{-- Botón ENTREGADO --}}
+                                    <form action="{{ route('recuperado', ['dato' => $d->id]) }}" method="POST">
+                                        @csrf
+                                        <button class="btn btn-warning fw-bold shadow-sm w-100" type="submit"
+                                            onclick="return confirmRecuperado()">
+                                            ENTREGADO
+                                        </button>
+                                    </form>
+
+                                    {{-- Botón FINAMENTE RECONOCIDO --}}
+                                    <form action="{{ route('fr', ['dato' => $d->id]) }}" method="POST">
+                                        @csrf
+                                        <button class="btn btn-secondary fw-bold shadow-sm w-100" type="submit"
+                                            onclick="return confirm('¿Estás seguro de realizar esta acción?')"
+                                            {{ $d->estado_ident === 'FR' ? 'disabled' : '' }}>
+                                            FINAMENTE RECONOCIDO
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        @endif
                     </div>
                 </div>
             @endforeach
