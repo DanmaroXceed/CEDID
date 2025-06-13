@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -23,39 +24,51 @@
 
     <style>
         @import url('https://fonts.googleapis.com/css?family=Raleway:400,700');
+
         body {
             font-family: Raleway, sans-serif;
             display: flex;
             flex-direction: column;
         }
+
         /* Estilos personalizados para el navbar */
         .navbar-brand {
-            flex-direction: column; /* Permitir que el logo y el título se apilen */
-            align-items: center;    /* Centrar contenido en el eje horizontal */
+            flex-direction: column;
+            /* Permitir que el logo y el título se apilen */
+            align-items: center;
+            /* Centrar contenido en el eje horizontal */
         }
 
         .navbar-brand img {
-            max-height: 50px; /* Ajustar el tamaño del logo */
+            max-height: 50px;
+            /* Ajustar el tamaño del logo */
         }
 
         .navbar-brand h1 {
-            margin: 0; /* Eliminar margen del h1 */
-            font-size: 1.25rem; /* Tamaño de texto responsivo */
-            text-align: center; /* Centrar el texto */
+            margin: 0;
+            /* Eliminar margen del h1 */
+            font-size: 1.25rem;
+            /* Tamaño de texto responsivo */
+            text-align: center;
+            /* Centrar el texto */
         }
 
         /* Estilos para el botón en mobile */
         .navbar .btn {
-            font-size: 0.8rem; /* Hacer el botón más pequeño en mobile */
-            margin-top: 10px; /* Espaciado superior para separar del texto */
-            margin-bottom: 10px; /* Espaciado inferior para separar del texto */
+            font-size: 0.8rem;
+            /* Hacer el botón más pequeño en mobile */
+            margin-top: 10px;
+            /* Espaciado superior para separar del texto */
+            margin-bottom: 10px;
+            /* Espaciado inferior para separar del texto */
         }
 
         .footer {
             background: white;
             display: flex;
             align-items: center;
-            justify-content: center; /* Centra todo el contenido del footer */
+            justify-content: center;
+            /* Centra todo el contenido del footer */
             position: fixed;
             bottom: 0;
             left: 0;
@@ -64,111 +77,184 @@
         }
 
         .footer-center {
-            background-color: #003A70; /* Color de fondo */
+            background-color: #003A70;
+            /* Color de fondo */
             color: white;
-            padding: 10px 20px; /* Espaciado interno */
+            padding: 10px 20px;
+            /* Espaciado interno */
             display: flex;
-            align-items: center; /* Centra el texto verticalmente */
-            height: 70px; /* Altura del contenedor */
-            transform: skew(-20deg); /* Crea el efecto de paralelogramo */
+            align-items: center;
+            /* Centra el texto verticalmente */
+            height: 70px;
+            /* Altura del contenedor */
+            transform: skew(-20deg);
+            /* Crea el efecto de paralelogramo */
         }
 
         .p-whi {
-            background-color: white; /* Color de fondo */
+            background-color: white;
+            /* Color de fondo */
             color: white;
-            padding: 2px; /* Espaciado interno */
+            padding: 2px;
+            /* Espaciado interno */
             display: flex;
-            align-items: center; /* Centra el texto verticalmente */
-            height: 70px; /* Altura del contenedor */
-            transform: skew(-20deg); /* Crea el efecto de paralelogramo */
+            align-items: center;
+            /* Centra el texto verticalmente */
+            height: 70px;
+            /* Altura del contenedor */
+            transform: skew(-20deg);
+            /* Crea el efecto de paralelogramo */
         }
-        
+
         .p-gold {
-            background-color: #ada200; /* Color de fondo */
+            background-color: #ada200;
+            /* Color de fondo */
             color: white;
-            padding: 5px; /* Espaciado interno */
+            padding: 5px;
+            /* Espaciado interno */
             display: flex;
-            align-items: center; /* Centra el texto verticalmente */
-            height: 70px; /* Altura del contenedor */
-            transform: skew(-20deg); /* Crea el efecto de paralelogramo */
+            align-items: center;
+            /* Centra el texto verticalmente */
+            height: 70px;
+            /* Altura del contenedor */
+            transform: skew(-20deg);
+            /* Crea el efecto de paralelogramo */
         }
-        
+
         .footer-center p {
-            transform: skew(20deg); /* Compensa la inclinación del texto para que esté recto */
-            margin: 0; /* Elimina márgenes en el párrafo */
+            transform: skew(20deg);
+            /* Compensa la inclinación del texto para que esté recto */
+            margin: 0;
+            /* Elimina márgenes en el párrafo */
         }
 
         .footer-image {
-            width: auto; /* Ajusta el tamaño de las imágenes según sea necesario */
+            width: auto;
+            /* Ajusta el tamaño de las imágenes según sea necesario */
             height: 70px;
         }
 
         .footer-image.left {
-            margin-right: 10px; /* Ajusta el espacio entre la imagen izquierda y el contenedor central */
+            margin-right: 10px;
+            /* Ajusta el espacio entre la imagen izquierda y el contenedor central */
         }
 
         .footer-image.right {
-            margin-left: 10px; /* Ajusta el espacio entre la imagen derecha y el contenedor central */
+            margin-left: 10px;
+            /* Ajusta el espacio entre la imagen derecha y el contenedor central */
         }
 
         .nav-link:hover {
-            color: #0202c5; /* Azul marino */
+            color: #0202c5;
+            /* Azul marino */
         }
 
         /* Ajustes responsivos */
         @media (min-width: 768px) {
             .navbar-brand {
-                flex-direction: row; /* Cambiar a fila en pantallas más grandes */
+                flex-direction: row;
+                /* Cambiar a fila en pantallas más grandes */
             }
+
             .navbar .btn {
-                margin-left: auto; /* Alinear el botón a la derecha */
-                margin-top: 0; /* Eliminar el margen superior en pantallas grandes */
+                margin-left: auto;
+                /* Alinear el botón a la derecha */
+                margin-top: 0;
+                /* Eliminar el margen superior en pantallas grandes */
             }
         }
-        
+
         @media (max-width: 1200px) {
             .footer {
-                font-size: 50%; /* Ajusta este porcentaje según el tamaño deseado */
+                font-size: 50%;
+                /* Ajusta este porcentaje según el tamaño deseado */
             }
 
             .footer-image {
-                width: auto; /* Ajusta el tamaño de las imágenes según sea necesario */
-                height: 50px; /* Ajusta el tamaño de las imágenes para pantallas medianas */
+                width: auto;
+                /* Ajusta el tamaño de las imágenes según sea necesario */
+                height: 50px;
+                /* Ajusta el tamaño de las imágenes para pantallas medianas */
             }
         }
-        
+
         @media (max-width: 600px) {
             .footer {
                 font-size: 35%;
             }
 
             .footer-image {
-                width: auto; /* Ajusta el tamaño de las imágenes según sea necesario */
-                height: 35px;/* Ajusta el tamaño de las imágenes para pantallas pequeñas */
+                width: auto;
+                /* Ajusta el tamaño de las imágenes según sea necesario */
+                height: 35px;
+                /* Ajusta el tamaño de las imágenes para pantallas pequeñas */
             }
+        }
+
+        .nav-link {
+            position: relative;
+            color: #333;
+            padding-bottom: 6px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            text-decoration: none;
+            padding: 8px 16px; /* padding vertical y horizontal */
+        }
+
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: #007bff;
+            /* azul bootstrap */
+            border-radius: 2px 2px 0 0;
+        }
+
+        .nav-link:not(.active):hover {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+            border-radius: 10px;
+            background-color: #f8f9fa;
+            /* un gris muy suave */
+            transform: translateY(-2px);
+            color: #0056b3;
+            text-decoration: none;
+            padding: 8px 20px; /* padding vertical y horizontal */
         }
     </style>
 </head>
+
 <body style="background: #e9e9e9">
     <nav class="navbar bg-body-tertiary" style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);">
         <div class="container-fluid px-4 px-md-5">
             <a class="navbar-brand d-flex align-items-center" href="/">
-                <img src="https://www.fiscaliazacatecas.gob.mx/wp-content/uploads/2019/03/logoweb-1.png" alt="Logo" class="me-2">
+                <img src="https://www.fiscaliazacatecas.gob.mx/wp-content/uploads/2019/03/logoweb-1.png" alt="Logo"
+                    class="me-2">
                 <h1 class="h4 mb-0 p-2">Búsqueda de Cédulas de Identificación</h1>
             </a>
             @auth
-            <div class="d-flex align-items-center">
-                <a class="mx-2 nav-link" href='/listado-admin'>Listado de administrador</a>
-                <a class="mx-2 nav-link" href="/captura">Capturar registro</a>
-                @if (auth()->user()->type == 1)
-                    <a class="mx-2 nav-link" href="/usrs">Usuarios</a>
-                @endif
-            </div>
+                <div class="d-flex align-items-center">
+                    @if (auth()->user()->type == 1)
+                        <a class="mx-2 nav-link {{ request()->is('usrs*') ? 'active' : '' }}" href="/usrs">Listado
+                            completo</a>
+                        <a class="mx-2 nav-link {{ request()->is('usrs*') ? 'active' : '' }}" href="/usrs">Usuarios</a>
+                    @endif
+                    {{-- Separador sin usar pipe para limpieza visual --}}
+                    <span class="mx-2 text-secondary">|</span>
+                    <a class="mx-2 nav-link {{ request()->is('listado-admin*') ? 'active' : '' }}"
+                        href="/listado-admin">Listado</a>
+                    <a class="mx-2 nav-link {{ request()->is('captura*') ? 'active' : '' }}" href="/captura">Capturar
+                        registro</a>
+                </div>
             @endauth
             <!-- Alinear el botón a la derecha en pantallas más grandes -->
             <div class="d-none d-md-flex"> <!-- Ocultar en móviles y mostrar en desktop -->
-                <a href="https://www.fiscaliazacatecas.gob.mx/" class="btn btn-outline-primary me-2">Página Principal FGJEZ</a>
-                <a href="https://accesosemefo.fiscaliazacatecas.gob.mx/" class="btn btn-outline-success me-2">Acceso a SEMEFO</a>
+                <a href="https://www.fiscaliazacatecas.gob.mx/" class="btn btn-outline-primary me-2">Página Principal
+                    FGJEZ</a>
+                <a href="https://accesosemefo.fiscaliazacatecas.gob.mx/" class="btn btn-outline-success me-2">Acceso a
+                    SEMEFO</a>
                 @auth
                     <form action="{{ route('logout') }}" method="POST">
                         @csrf
@@ -179,7 +265,8 @@
 
             <!-- Mostrar el botón centrado solo en móviles -->
             <div class="d-md-none w-100 text-center mt-2">
-                <a href="https://www.fiscaliazacatecas.gob.mx/" class="btn btn-outline-primary">Página Principal FGJEZ</a>
+                <a href="https://www.fiscaliazacatecas.gob.mx/" class="btn btn-outline-primary">Página Principal
+                    FGJEZ</a>
                 @auth
                     <form class="justify-content-md-end" action="{{ route('logout') }}" method="POST">
                         @csrf
@@ -188,7 +275,7 @@
                 @endauth
             </div>
         </div>
-    </nav>   
+    </nav>
 
     <div class="contenido" style="margin-bottom:100px">
         @yield('contenido')
@@ -200,8 +287,9 @@
         <div class="p-whi"></div>
         <div class="footer-center text-center">
             <p>SI RECONOCE A ESTA PERSONA, FAVOR DE COMUNICARSE AL TELEFONO
-            <strong>TEL. 492 288 60 55</strong> CON PERSONAL DE LA
-            FISCALÍA ESPECIALIZADA EN DESAPARICION DE PERSONAS</p>
+                <strong>TEL. 492 288 60 55</strong> CON PERSONAL DE LA
+                FISCALÍA ESPECIALIZADA EN DESAPARICION DE PERSONAS
+            </p>
         </div>
         <div class="p-whi"></div>
         <div class="p-gold"></div>
@@ -209,4 +297,5 @@
     </footer>
     @livewireScripts
 </body>
+
 </html>
